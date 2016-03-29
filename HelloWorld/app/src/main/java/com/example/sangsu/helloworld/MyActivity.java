@@ -24,6 +24,7 @@ public class MyActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //이전화면으로
 
 
     }
