@@ -13,9 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main); //리니어 레이아웃
         //setContentView(R.layout.activity_main2); //릴레티브 레이아웃
-       // setContentView(R.layout.activity_main3); //그리드 레이아웃
-        setContentView(R.layout.activity_main4); //프레임 레이아웃
+        setContentView(R.layout.activity_main3); //그리드 레이아웃
+       // setContentView(R.layout.activity_main4); //프레임 레이아웃
 
+        /* 프레임 레이아웃
         Button btn = (Button)findViewById(R.id.btn_change);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,5 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        */
     }
 }
