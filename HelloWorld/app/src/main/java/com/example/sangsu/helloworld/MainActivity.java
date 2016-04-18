@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView messageView;
     EditText inputView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         inputView = (EditText) findViewById(R.id.edit_input);
         Button btn = (Button) findViewById(R.id.btn_send);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        btn.setOnClickListener(new View.OnClickListener() { //이벤트 처리 리스너
             @Override
             public void onClick(View v) {
                 messageView.setText(inputView.getText().toString());
@@ -69,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "시작 버튼이 눌렸어요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "다른화면으로 이동.", Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(MainActivity.this, MyActivity.class);
                 startActivity(myIntent);
             }
         });
-        // 전화걸기
+        // 화면이동
 
     }
 }

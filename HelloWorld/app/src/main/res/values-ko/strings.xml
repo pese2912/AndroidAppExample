@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">헬로월드</string>
+    <string name="title_activity_my">메인액티비티</string>
+    <string name="Hello_world">헬로월드</string>
+    <string name="hi">하이</string>
+</resources>
