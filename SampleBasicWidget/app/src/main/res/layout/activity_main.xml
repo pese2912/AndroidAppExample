@@ -24,6 +24,58 @@
         android:text="btn"
         android:background="@drawable/btn_selector"
         android:layout_width="wrap_content"
+        android:onClick="onMyButtonClick"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/check"
+        android:button="@drawable/check_selector"
+        android:text="check"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <RadioGroup
+        android:id="@+id/group_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:text="man"
+            android:id="@+id/radio_m"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="woman"
+            android:id="@+id/radio_f"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/email"
+        android:hint="EmailAddress"
+        android:singleLine="true"
+        android:ems="10"
+        android:nextFocusDown="@+id/pass"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+    <EditText
+
+        android:hint="Password"
+        android:singleLine="true"
+        android:ems="10"
+        android:id="@+id/pass"
+        android:imeOptions="actionSend"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:text="send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
