@@ -95,8 +95,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btn_delAll = (Button)findViewById(R.id.btn_delAll);
+        btn_delAll.setOnClickListener(new View.OnClickListener(){ // 전체삭제
+
+            @Override
+            public void onClick(View v) {
+
+                    mAdapter.clear();
+                listView.clearChoices();
+
+
+            }
+        });
         initData();
     }
+
 
     public void initData() // 데이터 초기화
     {
