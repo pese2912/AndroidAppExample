@@ -12,9 +12,22 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     public MyViewHolder(View itemView) {
         super(itemView);
         titleView = (TextView)itemView.findViewById(R.id.text_title);
+        itemView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void setTitle(String title) {
         titleView.setText(title);
+    }
+
+
+    OnItemClickListener itemClickListener;
+    public void setOnItemClickListener(OnItemClickListener listener){
+
     }
 }
