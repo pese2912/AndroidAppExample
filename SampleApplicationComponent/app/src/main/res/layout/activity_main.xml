@@ -41,4 +41,14 @@
         android:layout_alignBottom="@+id/btn_start"
         android:layout_toRightOf="@+id/btn_start"
         android:layout_toEndOf="@+id/btn_start" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="read_contacts"
+        android:id="@+id/btn_read_contacts"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
