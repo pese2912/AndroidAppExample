@@ -21,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextView tv = (TextView)textSwitcher.getNextView();
-                tv.setText(count);
 
-                count++;
+                tv.setText("" + count++);
+                textSwitcher.showNext();
+
 
             }
         });
