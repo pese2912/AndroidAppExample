@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private static final int MESSAGE_PROGRESS = 1;
     private static final int MESSAGE_COMPLETE =2;
+
+    private static final int MESSAGE_BACKKEY = 3;
+    private static final int TIMEOUT_BACKKEY = 2000;
 
     Handler mHandler = new Handler(Looper.getMainLooper()){  //메인쓰레드에서 메시지를 받아서 ui 갱신
         @Override
@@ -34,9 +38,28 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText("downLoad Complete");
                     progressBar.setProgress(100);
                     break;
+                case MESSAGE_BACKKEY: // 백키받으면
+                    isBackPressed = false; //다시 누르라고 false로 변함
+                    break;
             }
         }
     } ;//메인쓰레드
+
+    boolean isBackPressed =false;
+
+    @Override
+    public void onBackPressed() { //한번누르고 다시 한번누르면 종료, 2초후에는 리셋되므로
+        if(!isBackPressed){ // 2초후에는 리셋되므로 다시 실행됨
+            Toast.makeText(this,"one more back key", Toast.LENGTH_SHORT).show();
+            isBackPressed= true;
+
+            mHandler.sendEmptyMessageDelayed(MESSAGE_BACKKEY, TIMEOUT_BACKKEY); //2초후에 백키 메시지전달
+        }else {
+            mHandler.removeMessages(MESSAGE_BACKKEY); //true면 백키메시지 제거
+            super.onBackPressed();
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
