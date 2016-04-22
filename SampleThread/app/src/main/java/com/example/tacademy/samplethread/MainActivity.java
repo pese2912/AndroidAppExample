@@ -1,5 +1,6 @@
 package com.example.tacademy.samplethread;
 
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -80,7 +81,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class MyTask extends AsyncTask<String,Integer, Boolean> { // AsyncTask 사용
+        @Override
+        protected void onProgressUpdate(Integer... values) { //메인쓰레드 업데이트
+            super.onProgressUpdate(values);
+            int progress = values[0]; //배열로 받기 때문에
+            textView.setText("progress : " + progress);
+            progressBar.setProgress(progress);
+        }
+
+        @Override
+        protected void onPreExecute() { //실행 끝난 후 메인쓰레드에서
+            super.onPreExecute();
+            textView.setText("downLoad Complete");
+            progressBar.setProgress(100);
+
+        }
+
+
+        @Override
+        protected Boolean doInBackground(String... params) { //갯수 상관없이 ,배열
+            int progress = 0;
+            while (progress <= 100) { // 루프
+                publishProgress(progress); //onProgressUpdate 호출
+                try {
+                    Thread.sleep(100); //0.5초 마다
+                } catch (Exception e) {
+                }
+                progress += 1; // 5씩 증가
+
+            }
+            return true;
+        }
+    }
+
     private void startDownload(){
+        new MyTask().execute(); //AsyncTask 사용
+
+
+        /* 핸들러 사용
         new Thread(new Runnable() { //워커 쓰레드 생성
             @Override
             public void run() {
@@ -109,8 +148,10 @@ public class MainActivity extends AppCompatActivity {
                 mHandler.post(new CompleteRunnable()); //메시지가 아닌 실행할 코드를 Runnable에 담아서 보냄
             }
         }).start();
+        */
     }
 
     //워커쓰레드에서 메시지를 생성해서  메인쓰레드로 보내 (sendMessage) 처리하는 경우(handleMessage)와
     //클래스를 정의하여 Runnable에 코드를 담아 보내는  post() 경우 두가지가 있다.
+    // 쉬운 방법은 AsyncTask 사용
 }
