@@ -1,11 +1,10 @@
 package com.example.tacademy.sampledesignsupport;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 /**
- * Created by Tacademy on 2016-04-26.
+ * Created by dongja94 on 2016-04-26.
  */
 public class MyPagerAdapter extends FragmentPagerAdapter {
     public MyPagerAdapter(FragmentManager fm) {
@@ -14,7 +13,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ChildFragment.newInstance("tabpager : "+ position);
+        return ChildFragment.newInstance("tabpager:"+position);
     }
 
     @Override
@@ -22,6 +21,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
         return 10;
     }
 
+    @Override
     public CharSequence getPageTitle(int position) {
         return "TAB"+position;
     }
