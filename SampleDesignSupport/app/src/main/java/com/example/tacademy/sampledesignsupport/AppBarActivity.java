@@ -1,7 +1,7 @@
 package com.example.tacademy.sampledesignsupport;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +26,7 @@ public class AppBarActivity extends AppCompatActivity {
     }
     public void initData(){
         for(int i =0; i<40; i++){
-            mAdapter.add("item "+i);
+            mAdapter.add("item"+i);
         }
     }
 }
