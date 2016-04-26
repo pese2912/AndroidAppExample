@@ -18,7 +18,9 @@
         <activity android:name=".TabLayoutActivity" />
         <activity android:name=".TabPagerActivity" />
         <activity android:name=".TextInputActivity" />
-        <activity android:name=".CoordinatorActivity"></activity>
+        <activity android:name=".CoordinatorActivity" />
+        <activity android:name=".AppBarActivity"
+            android:theme="@style/AppTheme.NoTitle"></activity>
     </application>
 
 </manifest>

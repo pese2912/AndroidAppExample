@@ -16,4 +16,16 @@
         android:title="N3">
 
     </item>
+
+    <item android:id="@+id/menu_4"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="N4">
+
+    </item>
+
+    <item android:id="@+id/menu_5"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="N5">
+
+    </item>
 </menu>
