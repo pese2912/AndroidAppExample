@@ -1,5 +1,6 @@
 package com.example.tacademy.sampledesignsupport;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +22,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nameView.setText("YSI");
     }
 
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_1 :
+                startActivity(new Intent(this, TabLayoutActivity.class));
+                return true;
             case R.id.menu_2 :
+                startActivity(new Intent(this, TabPagerActivity.class));
+                return true;
             case R.id.menu_3 :
                 Toast.makeText(this, "menu item selected : "+ item.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
