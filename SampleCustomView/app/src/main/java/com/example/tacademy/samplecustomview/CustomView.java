@@ -7,9 +7,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by Tacademy on 2016-04-27.
@@ -34,12 +39,45 @@ public class CustomView extends View {
     Bitmap mBitmap;
     int xBitmap, yBitmap;
 
+    GestureDetector mDetector;
+
+
+    Matrix mMatrix;
+
     private void init(){
         mPaint = new Paint();
 
         mBitmap = BitmapFactory.decodeResource(getResources(),android.R.drawable.ic_dialog_email);
+        mDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener(){
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
 
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                Log.i("CustomView : ", "scroll");
+                mMatrix.postTranslate(distanceX, distanceY);
+                return true;
+            }
 
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                Toast.makeText(getContext(), "Double Tab ", Toast.LENGTH_SHORT).show();
+                mMatrix.postScale(1.5f, 1.5f, e.getX(), e.getY());// 확대
+                invalidate();
+
+                return true;
+            }
+        });
+        mMatrix = new Matrix();
+        mMatrix.reset();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        boolean isUse = mDetector.onTouchEvent(event);
+        return isUse || super.onTouchEvent(event);
     }
 
     @Override
@@ -82,6 +120,7 @@ public class CustomView extends View {
         }
         xBitmap= getPaddingLeft() + width/2;
         yBitmap = getPaddingTop() + height/2;
+        mMatrix.setTranslate(xBitmap, yBitmap);
 
 
 
