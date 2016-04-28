@@ -15,8 +15,8 @@ public class Product {
     String tinyUrl;
     String productId;
 
-    public String toString()
-    {
-        return name + "\n"+ description;
+    @Override
+    public String toString() {
+        return name + "\n" + description;
     }
 }

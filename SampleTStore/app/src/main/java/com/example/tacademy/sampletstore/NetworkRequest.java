@@ -8,52 +8,50 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Tacademy on 2016-04-28.
+ * Created by dongja94 on 2016-04-28.
  */
-public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
+public abstract class NetworkRequest<T> implements Runnable {
 
-    public  static final String METHOD_GET ="GET";
-    public static final String METHOD_POST= "POST";
+    public static final String METHOD_GET = "GET";
+    public static final String METHOD_POST = "POST";
+
     abstract URL getURL() throws MalformedURLException;
-    public String getRequestMethod(){
-        return  METHOD_GET;
-    }
-    NetworkManager.OnrResultListener<T> mListener;
-    public void setOnResultListener(NetworkManager.OnrResultListener<T> listener){
-
-        mListener= listener;
+    public String getRequestMethod() {
+        return METHOD_GET;
     }
 
-    void sendSuccess(){//main thread
-        if(mListener != null && !isCancel){
-            mListener.onSuccess(this,result);
-        }
-
+    NetworkManager.OnResultListener<T> mListener;
+    public void setOnResultListener(NetworkManager.OnResultListener<T> listener) {
+        mListener = listener;
     }
-    void sendFail(){//main thread
 
-        if(mListener!=null && !isCancel){
-            mListener.onFail(this, errorCode,errorMessage,errorException,errorBody);
+    void sendSuccess() {
+        if (mListener != null && !isCancel) {
+            mListener.onSuccess(this, result);
         }
     }
 
-    public  void writeOutput(OutputStream out){
-
+    void sendFail() {
+        if (mListener != null && !isCancel) {
+            mListener.onFail(this, errorCode, errorMessage, errorException, errorBody);
+        }
     }
 
-    public void  setRequestHeaders(HttpURLConnection conn){
-
-
+    public void setRequestHeaders(HttpURLConnection conn) {
     }
-    public  void setConfiguration(HttpURLConnection conn){
 
+    public void setConfiguration(HttpURLConnection conn) {
     }
+
+    public void writeOutput(OutputStream out) {
+    }
+
     T result;
-    protected  void processSuccess(InputStream is){
+    protected void processSuccess(InputStream is) {
         result = parse(is);
         NetworkManager.getInstance().sendSuccess(this);
-
     }
+
     abstract T parse(InputStream is);
 
     int errorCode;
@@ -61,28 +59,27 @@ public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
     Throwable errorException;
     String errorBody;
 
-    protected void processError(int code, String message, Throwable exception, InputStream body){
+    protected void processError(int code, String message, Throwable exception, InputStream body) {
         errorCode = code;
         errorMessage = message;
-        errorException= exception;
-        if(body != null){
+        errorException = exception;
+        if (body != null) {
             //
         }
-
         NetworkManager.getInstance().sendFail(this);
     }
 
-    int retry= 3;
+    int retry = 3;
 
     boolean isCancel = false;
-    public void cancel(){
+    public void cancel() {
         isCancel = true;
     }
-    public boolean isCancel(){
+    public boolean isCancel() {
         return isCancel;
     }
 
-
+    @Override
     public void run() {
         int statucCode = 0;
         String statusMessage = null;
@@ -124,12 +121,8 @@ public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
                 retryCount--;
             }
         }
-
         if (!isCancel) {
             processError(statucCode, statusMessage, exception, body);
         }
     }
 }
-
-
-

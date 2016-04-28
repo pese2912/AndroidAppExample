@@ -8,19 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Tacademy on 2016-04-28.
+ * Created by dongja94 on 2016-04-28.
  */
 public class ProductAdapter extends BaseAdapter {
     List<Product> items = new ArrayList<>();
-
-    public void addAll(List<Product> items){
+    public void addAll(List<Product> items) {
         this.items.addAll(items);
         notifyDataSetChanged();
     }
-    public void add(Product item){
-        this.items.add(item);
+
+    public void add(Product item) {
+        items.add(item);
         notifyDataSetChanged();
     }
+
     @Override
     public int getCount() {
         return items.size();
@@ -35,7 +36,6 @@ public class ProductAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

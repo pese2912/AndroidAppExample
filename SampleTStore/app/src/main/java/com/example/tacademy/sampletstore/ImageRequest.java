@@ -1,5 +1,6 @@
 package com.example.tacademy.sampletstore;
 
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -8,10 +9,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Tacademy on 2016-04-28.
+ * Created by dongja94 on 2016-04-28.
  */
 public class ImageRequest extends NetworkRequest<Bitmap> {
-
     String url;
     public ImageRequest(String url){
         this.url = url;
