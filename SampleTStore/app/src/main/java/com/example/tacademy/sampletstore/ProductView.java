@@ -7,6 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 /**
  * Created by Tacademy on 2016-04-28.
  */
@@ -30,6 +32,7 @@ public class ProductView extends FrameLayout {
 
 
     }
+
     Product product;
     ImageRequest mRequest;
 
@@ -38,6 +41,9 @@ public class ProductView extends FrameLayout {
         nameView.setText(product.name);
         rankView.setText("score : "+ product.score);
         descriptionView.setText(product.description);
+
+
+        //Glide.with(getContext()).load(product.thumbnailUrl).into(iconView); //오픈소스 사용
 
         if(mRequest != null){//이미지 재사용
             mRequest.cancel();

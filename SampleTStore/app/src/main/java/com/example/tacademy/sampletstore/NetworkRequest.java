@@ -71,6 +71,7 @@ public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
 
         NetworkManager.getInstance().sendFail(this);
     }
+
     int retry= 3;
 
     boolean isCancel = false;
@@ -80,6 +81,7 @@ public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
     public boolean isCancel(){
         return isCancel;
     }
+
 
     public void run() {
         int statucCode = 0;
@@ -122,8 +124,12 @@ public abstract class NetworkRequest<T> implements Runnable { //템플릿 패턴
                 retryCount--;
             }
         }
+
         if (!isCancel) {
             processError(statucCode, statusMessage, exception, body);
         }
     }
 }
+
+
+
