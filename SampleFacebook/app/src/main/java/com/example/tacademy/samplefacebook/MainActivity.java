@@ -3,6 +3,7 @@ package com.example.tacademy.samplefacebook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     LoginManager mLoginManager;
     AccessTokenTracker mTracker;
 
-    Button loginButton;
+    Button mloginButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,30 +36,31 @@ public class MainActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
 
         mLoginManager = LoginManager.getInstance();
-    //    LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-    //    loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-         //   @Override
-    //       public void onSuccess(LoginResult loginResult) { //로그인 성공시
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+           public void onSuccess(LoginResult loginResult) { //로그인 성공시
 
-    //        }
+            }
 
-       //     @Override
-    //        public void onCancel() {//이미 로그인되어 있는 경우
+            @Override
+            public void onCancel() {//이미 로그인되어 있는 경우
 
-      //      }
+            }
 
-          //  @Override
-       //     public void onError(FacebookException error) { // 로그인 실패시
+            @Override
+            public void onError(FacebookException error) { // 로그인 실패시
 
-      //      }
-      //  });
+            }
+        });
 
-        loginButton= (Button)findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        mloginButton= (Button)findViewById(R.id.btn_login);
+        mloginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
+                Log.i("!isLogin()" ,!isLogin()+"");
                 if(!isLogin()) { // 토큰이 널이면 로그인 안된경우
 
                     mLoginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -94,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
    }
 
     @Override
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
     private void changeButtonText(){
 
         if(isLogin()){
-            loginButton.setText("logout");
+            mloginButton.setText("logout");
         }else{
-            loginButton.setText("login");
+            mloginButton.setText("login");
         }
     }
 
