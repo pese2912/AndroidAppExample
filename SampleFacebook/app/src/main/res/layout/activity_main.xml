@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="175dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,6 +23,32 @@
         android:text="login"
         android:id="@+id/btn_login"
         android:layout_below="@+id/login_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POST"
+        android:id="@+id/btn_post"
+        android:layout_alignTop="@+id/btn_login"
+        android:layout_toRightOf="@+id/btn_login"
+        android:layout_toEndOf="@+id/btn_login" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
+        android:layout_below="@+id/btn_login" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my_info"
+        android:id="@+id/btn_my_info"
+        android:layout_above="@+id/listView"
+        android:layout_toRightOf="@+id/btn_post"
+        android:layout_toEndOf="@+id/btn_post" />
+
 </RelativeLayout>
