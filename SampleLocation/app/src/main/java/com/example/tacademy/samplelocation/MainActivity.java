@@ -35,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!mLM.isProviderEnabled(mProvider)) { //위치사용 안되있으면
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)); //위치사용
-
         }
-
 
     }
 
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Location location = mLM.getLastKnownLocation(mProvider); // 가장 마지막 픽스된 로케이션
-        
+
         if(location != null){
             displayLocation(location);
         }
@@ -140,4 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
