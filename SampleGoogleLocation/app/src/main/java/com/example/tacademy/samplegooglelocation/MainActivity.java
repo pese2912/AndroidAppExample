@@ -29,6 +29,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+
+import okhttp3.Request;
+
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks,
@@ -84,7 +88,19 @@ public class MainActivity extends AppCompatActivity implements
 
     private void displayMessage(Location location) {
         if (location != null) {
-            messageView.setText("lat : " + location.getLatitude() + ", lng : " + location.getLongitude());
+            //messageView.setText("lat : " + location.getLatitude() + ", lng : " + location.getLongitude());
+            NetworkManager.getInstance().getTmapReverseGeoCoding(this, location.getLatitude(), location.getLongitude(), new NetworkManager.OnResultListener<AddressInfo>() {
+                @Override
+                public void onSuccess(Request request, AddressInfo result) {
+                    messageView.setText(result.fullAddress);
+                }
+
+                @Override
+                public void onFail(Request request, IOException exception) {
+
+                }
+            });
+
             moveMap(location.getLatitude(), location.getLongitude(), 15f);
 
         }
@@ -146,8 +162,6 @@ public class MainActivity extends AppCompatActivity implements
         options.snippet("marker description");
         options.draggable(true); //마커 드래그 가능
         Marker m = mMap.addMarker(options);
-
-
 
     }
 
